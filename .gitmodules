@@ -1,0 +1,6 @@
+[submodule "Snap--Build-Your-Own-Blocks"]
+	path = Snap--Build-Your-Own-Blocks
+	url = https://github.com/brollb/Snap--Build-Your-Own-Blocks
+[submodule "www/Snap--Build-Your-Own-Blocks"]
+	path = www/Snap--Build-Your-Own-Blocks
+	url = https://github.com/brollb/Snap--Build-Your-Own-Blocks

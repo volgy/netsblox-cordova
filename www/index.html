@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>NetsBlox</title>
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript" src="polyfill.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/morphic.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/locale.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/widgets.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/blocks.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/threads.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/objects.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/gui.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/paint.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/lists.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/byob.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/tables.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/xml.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/store.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/cloud.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/sha512.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/actions.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/undo.js"></script>
+        <script type="text/javascript" src="Snap--Build-Your-Own-Blocks/FileSaver.min.js"></script>
+
+        <!-- Snap overrides -->
+        <script type="text/javascript" src="widgets.js"></script>
+        <script type="text/javascript" src="objects.js"></script>
+        <script type="text/javascript" src="blocks.js"></script>
+        <script type="text/javascript" src="gui.js"></script>
+        <script type="text/javascript" src="cloud.js"></script>
+        <script type="text/javascript" src="threads.js"></script>
+        <script type="text/javascript" src="byob.js"></script>
+
+        <!-- Additional Components-->
+        <script type="text/javascript" src="blocks-ext.js"></script>
+        <script type="text/javascript" src="websockets.js"></script>
+        <script type="text/javascript" src="messages.js"></script>
+        <script type="text/javascript" src="message-inputs.js"></script>
+        <script type="text/javascript" src="message-listeners.js"></script>
+        <script type="text/javascript" src="room.js"></script>
+        <script type="text/javascript" src="netsblox.js"></script>
+
+        <!-- Snap overrides -->
+        <script type="text/javascript" src="store.js"></script>
+        <script type="text/javascript" src="actions.js"></script>
+
+		<script type="text/javascript">
+
+        var world, app;
+
+        app = {
+            // Application Constructor
+            initialize: function() {
+                document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+            },
+
+            // deviceready Event Handler
+            //
+            // Bind any cordova events here. Common events are:
+            // 'pause', 'resume', etc.
+            onDeviceReady: function() {
+                world = new WorldMorph(document.getElementById('world'));
+                world.worldCanvas.focus();
+				new NetsBloxMorph().openIn(world);
+                this.loop();
+            },
+
+            loop: function() {
+                requestAnimationFrame(this.loop.bind(this));
+				world.doOneCycle();
+            }
+        };
+
+        app.initialize();
+
+		</script>
+    </head>
+    <body style="margin: 0;">
+        <canvas id="world" tabindex="1" style="position: absolute;" ></canvas>
+    </body>
+</html>
+
